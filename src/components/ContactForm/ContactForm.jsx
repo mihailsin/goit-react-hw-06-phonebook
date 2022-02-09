@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { Form, Label, Input, Button, Wrapper } from './ContactForm.styled';
 import propTypes from 'prop-types';
 
-const ContactForm = ({ submitted }) => {
+const ContactForm = ({ addContact }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -24,7 +24,7 @@ const ContactForm = ({ submitted }) => {
   const submitHandler = e => {
     e.preventDefault();
 
-    submitted({ name, number, id: nanoid(10) });
+    addContact({ name, number, id: nanoid(10) });
     resetFormFields();
   };
 
@@ -60,7 +60,7 @@ const ContactForm = ({ submitted }) => {
 };
 
 ContactForm.propTypes = {
-  submitted: propTypes.func.isRequired,
+  addContact: propTypes.func.isRequired,
 };
 
 export default ContactForm;
