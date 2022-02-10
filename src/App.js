@@ -12,15 +12,6 @@ const App = () => {
   const filterValue = useSelector(state => state.contacts.filter);
   const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
-  // const handleSubmittedData = contact => {
-  //   const existingNames = getContactNames();
-
-  //   if (existingNames.includes(contact.name.toLowerCase())) {
-  //     alert(`${contact.name} is already in contacts`);
-  //   } else {
-  //     setContacts([contact, ...contacts]);
-  //   }
-  // };
 
   const filterContacts = () => {
     const normalizedContacts = filterValue.toLowerCase();
@@ -28,6 +19,7 @@ const App = () => {
       contact.name.toLowerCase().includes(normalizedContacts)
     );
   };
+
   const filteredContacts = filterContacts();
 
   return (
