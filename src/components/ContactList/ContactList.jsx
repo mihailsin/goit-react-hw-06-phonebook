@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { remove } from 'redux/store';
+import { remove } from '../../redux/items-slice';
 import propTypes from 'prop-types';
 import { ImBin2 } from 'react-icons/im';
 import { List, Item, Button } from './ContactList.styled';

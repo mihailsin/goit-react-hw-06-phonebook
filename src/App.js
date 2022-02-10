@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { add, setString } from 'redux/store';
+import { add } from './redux/items-slice';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
@@ -12,27 +12,6 @@ const App = () => {
   const filterValue = useSelector(state => state.contacts.filter);
   const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
-
-  // const savedContacts = localStorage.getItem('contacts');
-  // const parsedContacts = JSON.parse(savedContacts);
-
-  // const [contacts, setContacts] = useState(() => {
-  //   return parsedContacts ?? [];
-  // });
-  // const [filter, setFilter] = useState('');
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
-  // const filterInputHandler = e => {
-  //   setFilter(e.currentTarget.value);
-  // };
-
-  // const getContactNames = () => {
-  //   return contacts.map(contact => contact.name.toLowerCase());
-  // };
-
   // const handleSubmittedData = contact => {
   //   const existingNames = getContactNames();
 
@@ -50,9 +29,6 @@ const App = () => {
     );
   };
   const filteredContacts = filterContacts();
-  // const deleteContact = id => {
-  //   setContacts(contacts.filter(contact => contact.id !== id));
-  // };
 
   return (
     <Grid>
@@ -63,10 +39,7 @@ const App = () => {
 
       <GridContainer>
         <h2>Contacts</h2>
-        <Filter
-          value={filterValue}
-          inputHandler={e => dispatch(setString(e.target.value))}
-        />
+        <Filter />
         <ContactList contacts={filteredContacts} />
       </GridContainer>
     </Grid>
