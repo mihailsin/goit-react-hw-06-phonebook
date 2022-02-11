@@ -1,15 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { saveToLocalStorage } from 'localStorage/read-write';
 import { rootReducer } from './reducers';
-import throttle from 'lodash.throttle';
+import { persistStore } from 'redux-persist';
 
 const store = configureStore({
   reducer: rootReducer,
 });
-store.subscribe(
-  throttle(() => {
-    saveToLocalStorage(store.getState().contacts.items);
-  }, 1000)
-);
-
-export default store;
+const persistor = persistStore(store);
+export { store, persistor };
