@@ -24,23 +24,24 @@ const ContactForm = () => {
     setNumber('');
   };
 
-  const contactNamesMatched = () => {
-    const normalizedNames = items.map(item => item.name.toLowerCase());
+  const contactNamesMatched = array => {
+    const normalizedNames = array.map(item => item.name.toLowerCase());
     if (normalizedNames.includes(name.toLowerCase())) {
       alert(`${name} is already in contacts`);
       return true;
     }
   };
+
+  const submitHandler = e => {
+    e.preventDefault();
+    resetFormFields();
+    if (contactNamesMatched(items)) {
+      return;
+    } else dispatch(add({ name, number, id: nanoid(10) }));
+  };
+
   return (
-    <Form
-      onSubmit={e => {
-        e.preventDefault();
-        resetFormFields();
-        if (contactNamesMatched()) {
-          return;
-        } else dispatch(add({ name, number, id: nanoid(10) }));
-      }}
-    >
+    <Form onSubmit={submitHandler}>
       <Wrapper>
         <Label htmlFor={nameInputId}>Name</Label>
         <Input
